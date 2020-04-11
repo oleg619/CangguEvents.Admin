@@ -1,0 +1,50 @@
+﻿@page "/events"
+@using CangguEvents.Api.Events.Queries
+@using CangguEvents.Domain.Models
+@using MediatR
+@inject IMediator Mediator
+
+<h1>Events</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (_events == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Id</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _events)
+        {
+            <tr>
+                <td>@forecast.Name</td>
+                <td>@forecast.Description</td>
+                <td>@forecast.Id</td>
+                <td>@forecast.Location.ToString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<EventInfo> _events;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _events = await Mediator.Send(new GetAllEventsQuery());
+    }
+
+}
