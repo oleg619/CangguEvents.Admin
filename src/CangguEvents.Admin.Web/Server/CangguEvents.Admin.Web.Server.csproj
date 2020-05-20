@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UserSecretsId>CangguEvents.Admin.Web.Server-9263546F-D2A4-4462-8C18-E47BCE896135</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0-preview5.20216.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\CangguEvents.TelegramBot\src\CangguEvents.TelegramBot.Application\CangguEvents.TelegramBot.Application.csproj" />
+        <ProjectReference Include="..\..\CangguEvents.Admin.Application\CangguEvents.Admin.Application.csproj" />
+        <ProjectReference Include="..\Client\CangguEvents.Admin.Web.Client.csproj" />
+        <ProjectReference Include="..\Shared\CangguEvents.Admin.Web.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
+        <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+        <ProjectReference Include="..\..\..\..\CangguEvents.MongoDb\src\CangguEvents.MongoDb\CangguEvents.MongoDb.csproj" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+        <PackageReference Include="CangguEvents.MongoDb" Version="0.1.2" />
+    </ItemGroup>
+
+</Project>

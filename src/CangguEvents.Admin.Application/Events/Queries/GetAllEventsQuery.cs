@@ -11,11 +11,11 @@ namespace CangguEvents.Api.Events.Queries
     {
     }
 
-    public class GetWeatherForecastsQueryHandler : IRequestHandler<GetAllEventsQuery, List<EventInfo>>
+    public class GetAllEventsQueryHandler : IRequestHandler<GetAllEventsQuery, List<EventInfo>>
     {
         private readonly IEventsRepository _eventsRepository;
 
-        public GetWeatherForecastsQueryHandler(IEventsRepository eventsRepository)
+        public GetAllEventsQueryHandler(IEventsRepository eventsRepository)
         {
             _eventsRepository = eventsRepository;
         }

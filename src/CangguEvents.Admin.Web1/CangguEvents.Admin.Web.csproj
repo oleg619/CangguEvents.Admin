@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp5.0</TargetFramework>
         <UserSecretsId>aspnet-WebApplication-E6C2CABB-B5F0-4775-A4B6-0A63A155D1FB</UserSecretsId>
         <LangVersion>latest</LangVersion>
+        <RootNamespace>CangguEvents.Web</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

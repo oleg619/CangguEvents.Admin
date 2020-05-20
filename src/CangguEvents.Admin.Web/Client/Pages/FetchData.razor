@@ -1,0 +1,55 @@
+@page "/fetchdata"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using CangguEvents.Admin.Web.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (_userStates == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Subscribed</th>
+            <th>ShortInfo</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var userState in _userStates)
+        {
+            <tr>
+                <td>@userState.Id.ToString()</td>
+                <td>@userState.Subscribed</td>
+                <td>@userState.ShortInfo</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<UserStateDto> _userStates;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _userStates = await Http.GetFromJsonAsync<List<UserStateDto>>("UserStates");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+}
